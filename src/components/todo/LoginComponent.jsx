@@ -3,8 +3,8 @@ import AuthenticationService from "./AuthenticationService.js";
 const {Component} = require("react");
 
 class LoginComponent extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             username: 'bodesere',

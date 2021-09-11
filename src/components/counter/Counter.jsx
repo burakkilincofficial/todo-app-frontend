@@ -79,10 +79,7 @@ class Counter extends Component {
             }
         )
     }
-
-
 }
-
 
 class CounterButton extends Component {
 
@@ -110,6 +107,5 @@ CounterButton.defaultProps = {
 CounterButton.propTypes = {
     by: PropTypes.number
 }
-
 
 export default Counter

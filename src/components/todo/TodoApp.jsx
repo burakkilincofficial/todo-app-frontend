@@ -10,8 +10,19 @@ import WelcomeComponent from "./WelcomeComponent";
 import FooterComponent from "./FooterComponent";
 import ErrorComponent from "./ErrorComponent";
 import AuthenticatedRoute from "./AuthenticatedRoute";
+import AuthenticationService from "./AuthenticationService";
 
 class TodoApp extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            username: 'bodesere',
+            password: '',
+            hasLoginFailed: false,
+            showSuccessMessage: false
+        }
+    }
 
     render() {
         return (

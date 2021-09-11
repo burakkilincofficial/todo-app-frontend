@@ -18,3 +18,9 @@ button {
 
 body {
 }
+
+.footer {
+    position:fixed;
+    height: 25px;
+}
+
