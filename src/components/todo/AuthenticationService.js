@@ -12,8 +12,6 @@ class AuthenticationService {
         if (user === null) return ''
         return user
     }
-
-
 }
 
 export default new AuthenticationService()

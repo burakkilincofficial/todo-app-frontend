@@ -4,7 +4,6 @@ class ListTodosComponent extends Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
             todos:
                 [
@@ -20,9 +19,7 @@ class ListTodosComponent extends Component {
                     {id: 10, done: true, targetDate: new Date().toDateString(), description: 'Learn G'},
                 ]
         }
-
     }
-
 
     render() {
         return (

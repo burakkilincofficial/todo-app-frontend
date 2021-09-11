@@ -32,7 +32,6 @@ class LoginComponent extends Component {
         )
     }
 
-
     render() {
         return (
             <div>
@@ -48,8 +47,6 @@ class LoginComponent extends Component {
                 </div>
             </div>);
     }
-
-
 }
 
 export default LoginComponent
