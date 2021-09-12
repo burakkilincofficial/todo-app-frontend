@@ -56,14 +56,12 @@ class WelcomeComponent extends Component {
     }
 
     handleWelcomeBeanMessage = (response) => {
-        console.log(response)
         this.setState({
             welcomeBeanMessage: response.data.message
         })
     }
 
     handlePathVariableMessage = (response) => {
-        console.log(response)
         this.setState({
             welcomePathVariableMessage: response.data.message
         })

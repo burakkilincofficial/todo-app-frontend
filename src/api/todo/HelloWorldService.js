@@ -3,15 +3,15 @@ import axios from "axios";
 class HelloWorldService {
 
     getHelloWorldMessage() {
-        return axios.get("http://localhost:8080/hello-world")
+        return axios.get("http://localhost:8080/v1/hello-world")
     }
 
     getHelloWorldBeanMessage() {
-        return axios.get("http://localhost:8080/hello-world-bean")
+        return axios.get("http://localhost:8080/v1/hello-world-bean")
     }
 
     getPathVariableMessage(name) {
-        return axios.get(`http://localhost:8080/hello-world/path-variable/${name}`)
+        return axios.get(`http://localhost:8080/v1/hello-world/path-variable/${name}`)
     }
 }
 
