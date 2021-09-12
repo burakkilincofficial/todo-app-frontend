@@ -11,7 +11,7 @@ class HeaderComponent extends Component {
                     <div><a className="navbar-brand" href="https://burak-kilinc-blog.vercel.app/"
                     >bodesere</a></div>
                     <ul className="navbar-nav">
-                        {isUserLoggedIn && <li><Link className="nav-link" to="/welcome/bk">Home</Link></li>}
+                        {isUserLoggedIn && <li><Link className="nav-link" to="/welcome/bodesere">Home</Link></li>}
                         {isUserLoggedIn && <li><Link className="nav-link" to="/todos">Todos</Link></li>}
                     </ul>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
