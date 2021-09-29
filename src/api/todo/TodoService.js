@@ -2,8 +2,8 @@ import axios from "axios";
 
 class TodoService {
 
-    getAllTodos(){
-        return axios.get("http://localhost:8080/v1/todo/")
+    getAllTodosByName(name){
+        return axios.get(`http://localhost:8080/v1/todo/user-name/${name}`)
     }
 }
 

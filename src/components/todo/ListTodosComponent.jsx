@@ -1,4 +1,5 @@
 import TodoService from "../../api/todo/TodoService";
+import AuthenticationService from "./AuthenticationService";
 
 const {Component} = require("react");
 
@@ -11,16 +12,27 @@ class ListTodosComponent extends Component {
         }
     }
 
-    getAllTodos = () => {
-        TodoService.getAllTodos()
-            .then(response => this.handleGetAllTodos(response))
-            .catch(err=>console.log("buuggg", err))
+    componentDidMount() {
+        let userName = AuthenticationService.getUser()
+        console.log(userName)
+        TodoService.getAllTodosByName(userName)
+            .then(response=> this.setState({
+                todos: response.data.data
+            }))
+
+
     }
-    handleGetAllTodos = (response) => {
-        this.setState({
-            todos : response.data.data
-        })
-    }
+
+    // getAllTodos = () => {
+    //     TodoService.getAllTodos()
+    //         .then(response => this.handleGetAllTodos(response))
+    //         .catch(err=>console.log("buuggg", err))
+    // }
+    // handleGetAllTodos = (response) => {
+    //     this.setState({
+    //         todos : response.data.data
+    //     })
+    // }
 
     render() {
         return (
@@ -47,7 +59,6 @@ class ListTodosComponent extends Component {
                         )}
                         </tbody>
                     </table>
-                    {this.getAllTodos()}
                 </div>
             </div>
         );
