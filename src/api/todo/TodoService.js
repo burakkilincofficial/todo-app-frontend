@@ -22,6 +22,10 @@ class TodoService {
         return axios.put(`http://localhost:8080/v1/todos/${id}`, updateTodoRequest)
     }
 
+    completeTodo(id) {
+        return axios.post(`http://localhost:8080/v1/todos/complete/${id}`)
+    }
+
 }
 
 export default new TodoService();

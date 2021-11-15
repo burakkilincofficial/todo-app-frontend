@@ -4,31 +4,63 @@ import {ErrorMessage, Field, Form, Formik} from 'formik';
 import TodoService from "../../api/todo/TodoService";
 import AuthenticationService from "./AuthenticationService";
 
-class UpdateTodoComponent extends Component {
+class TodoComponent extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            id: this.props.match.params.id,
             todoName: '',
             description: '',
             targetDate: moment(new Date()).format('YYYY-MM-DD')
         }
     }
 
+    componentDidMount() {
+        if (this.state.id != null) {
+            TodoService.getTodo(this.state.id).then(r => {
+                this.setState({
+                    todoName: r.data.todoName,
+                    description: r.data.description,
+                    targetDate: moment(r.data.targetDate).format('YYYY-MM-DD')
+                })
+            })
+        }
+
+    }
+
     onSubmit = (values) => {
         let userName = AuthenticationService.getUser()
-        TodoService.createTodo(userName, {
-            description: values.description,
-            targetDate: values.targetDate,
-            userName: userName,
-            todoName: values.todoName
-        }).then(
-            this.props.history.push(`/todos`)
-        )
+        if (this.state.id) {
+            TodoService.updateTodo(this.state.id, {
+                description: values.description,
+                targetDate: values.targetDate,
+                userName: userName,
+                todoName: values.todoName
+            }).then(
+                this.props.history.push(`/todos`)
+            )
+        } else {
+            TodoService.createTodo(userName, {
+                description: values.description,
+                targetDate: values.targetDate,
+                userName: userName,
+                todoName: values.todoName
+            }).then(r => {
+                    this.props.history.push(`/todos`)
+                }
+            )
+        }
+
     }
 
     validate = (values) => {
         let errors = {}
+        if (!values.todoName) {
+            errors.todoName = 'Enter a description!'
+        } else if (values.todoName.length < 3) {
+            errors.todoName = 'Enter at least 3 characters in description!'
+        }
         if (!values.description) {
             errors.description = 'Enter a description!'
         } else if (values.description.length < 5) {
@@ -73,6 +105,11 @@ class UpdateTodoComponent extends Component {
                                         <Field className="form-control" type="text" name="description"/>
                                         <label>Target Date</label>
                                         <Field className="form-control" type="date" name="targetDate"/>
+                                        <label>IsCompleted</label>
+                                        <Field className="form-control" as="select" name="color">
+                                            <option value="false">Not Completed</option>
+                                            <option value="true">Completed</option>
+                                        </Field>
                                         <button className="btn btn-success" type="submit">Save</button>
                                     </fieldset>
                                 </Form>
@@ -85,4 +122,4 @@ class UpdateTodoComponent extends Component {
     }
 }
 
-export default UpdateTodoComponent
+export default TodoComponent

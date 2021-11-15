@@ -37,8 +37,9 @@ class ListTodosComponent extends Component {
                             <th>Description</th>
                             <th>Target Date</th>
                             <th>Is Completed</th>
-                            <th>Update</th>
-                            <th>Delete</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -51,6 +52,12 @@ class ListTodosComponent extends Component {
                                 <td>
                                     <button className="btn btn-warning"
                                             onClick={() => this.updateTodoClicked(todo.id)}>Update
+                                    </button>
+                                </td>
+
+                                <td>
+                                    <button className="btn btn-outline-secondary"
+                                            onClick={() => this.completeTodo(todo.id)}>Complete
                                     </button>
                                 </td>
                                 <td>
@@ -79,8 +86,14 @@ class ListTodosComponent extends Component {
         })
     }
 
-    addTodo=()=>{
+    addTodo = () => {
         this.props.history.push(`/todo`)
+    }
+
+    completeTodo = (id) => {
+        TodoService.completeTodo(id).then(r => {
+            this.getData()
+        })
     }
 }
 
