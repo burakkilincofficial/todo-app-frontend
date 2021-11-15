@@ -8,7 +8,7 @@ class HeaderComponent extends Component {
         let user = AuthenticationService.getUser();
         return (
             <header>
-                <nav className="navbar navbar-expand-md navbar-dark bg-dark" style={{padding:7}}>
+                <nav className="navbar navbar-expand-md navbar-dark bg-dark" style={{padding: 7}}>
                     <div><a className="navbar-brand" href="https://burak-kilinc-blog.vercel.app/"
                     >{user}</a></div>
                     <ul className="navbar-nav">

@@ -15,7 +15,7 @@ class TodoService {
     }
 
     createTodo(name, createTodoRequest) {
-        return axios.post(`http://localhost:8080/v1/todos/${name}`,createTodoRequest)
+        return axios.post(`http://localhost:8080/v1/todos/${name}`, createTodoRequest)
     }
 
     updateTodo(id, updateTodoRequest) {

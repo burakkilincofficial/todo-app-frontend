@@ -31,22 +31,18 @@ class TodoComponent extends Component {
 
     onSubmit = (values) => {
         let userName = AuthenticationService.getUser()
+        let todo = {
+            description: values.description,
+            targetDate: values.targetDate,
+            userName: userName,
+            todoName: values.todoName
+        }
         if (this.state.id) {
-            TodoService.updateTodo(this.state.id, {
-                description: values.description,
-                targetDate: values.targetDate,
-                userName: userName,
-                todoName: values.todoName
-            }).then(
+            TodoService.updateTodo(this.state.id, todo).then(
                 this.props.history.push(`/todos`)
             )
         } else {
-            TodoService.createTodo(userName, {
-                description: values.description,
-                targetDate: values.targetDate,
-                userName: userName,
-                todoName: values.todoName
-            }).then(r => {
+            TodoService.createTodo(userName, todo).then(() => {
                     this.props.history.push(`/todos`)
                 }
             )
@@ -93,7 +89,7 @@ class TodoComponent extends Component {
                             enableReinitialize={true}>
 
                         {
-                            (props) => (
+                            () => (
                                 <Form>
                                     <ErrorMessage name="description" component="div" className="alert alert-warning"/>
                                     <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
