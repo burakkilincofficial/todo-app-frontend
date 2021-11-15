@@ -5,11 +5,12 @@ import AuthenticationService from "./AuthenticationService";
 class HeaderComponent extends Component {
     render() {
         const isUserLoggedIn = AuthenticationService.isLoggedIn();
+        let user = AuthenticationService.getUser();
         return (
             <header>
-                <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+                <nav className="navbar navbar-expand-md navbar-dark bg-dark" style={{padding:7}}>
                     <div><a className="navbar-brand" href="https://burak-kilinc-blog.vercel.app/"
-                    >bodesere</a></div>
+                    >{user}</a></div>
                     <ul className="navbar-nav">
                         {isUserLoggedIn && <li><Link className="nav-link" to="/welcome/bodesere">Home</Link></li>}
                         {isUserLoggedIn && <li><Link className="nav-link" to="/todos">Todos</Link></li>}

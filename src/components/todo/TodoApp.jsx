@@ -10,6 +10,8 @@ import WelcomeComponent from "./WelcomeComponent";
 import FooterComponent from "./FooterComponent";
 import ErrorComponent from "./ErrorComponent";
 import AuthenticatedRoute from "./AuthenticatedRoute";
+import UpdateTodoComponent from "./UpdateTodoComponent";
+import CreateTodoComponent from "./CreateTodoComponent";
 
 class TodoApp extends Component {
     constructor(props) {
@@ -34,6 +36,8 @@ class TodoApp extends Component {
                             <Route path="/login" component={LoginComponent}/>
                             <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>
                             <AuthenticatedRoute path="/todos" component={ListTodosComponent}/>
+                            <AuthenticatedRoute exact path="/todo" component={CreateTodoComponent}/>
+                            <AuthenticatedRoute path="/todo/:id" component={UpdateTodoComponent}/>
                             <AuthenticatedRoute path="/logout" component={LogoutComponent}/>
                             <Route component={ErrorComponent}/>
                         </Switch>
