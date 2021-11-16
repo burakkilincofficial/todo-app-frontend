@@ -29,6 +29,7 @@ class ListTodosComponent extends Component {
         return (
             <div>
                 <h1>List Todos</h1>
+                {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
                 <div className="container">
                     <table className="table">
                         <thead>
@@ -37,6 +38,7 @@ class ListTodosComponent extends Component {
                             <th>Description</th>
                             <th>Target Date</th>
                             <th>Is Completed</th>
+                            <th>Completed Date</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -49,6 +51,7 @@ class ListTodosComponent extends Component {
                                 <td>{todo.description}</td>
                                 <td>{todo.targetDate}</td>
                                 <td>{todo.isCompleted.toString()}</td>
+                                <td>{todo.completedDate}</td>
                                 <td>
                                     <button className="btn btn-warning"
                                             onClick={() => this.updateTodoClicked(todo.id)}>Update
@@ -62,7 +65,7 @@ class ListTodosComponent extends Component {
                                 </td>
                                 <td>
                                     <button className="btn btn-danger"
-                                            onClick={() => this.deleteTodoClicked(todo.id)}>Delete
+                                            onClick={() => this.deleteTodoClicked(todo.id, todo.todoName)}>Delete
                                     </button>
                                 </td>
                             </tr>
@@ -80,8 +83,10 @@ class ListTodosComponent extends Component {
     }
 
 
-    deleteTodoClicked = (id) => {
+    deleteTodoClicked = (id, name) => {
+        console.log(id)
         TodoService.deleteTodo(id).then(r => {
+            this.setState({message: `Delete of todo ${name} Successful`})
             this.getData()
         })
     }
