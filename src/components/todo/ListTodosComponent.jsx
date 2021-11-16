@@ -28,7 +28,7 @@ class ListTodosComponent extends Component {
     render() {
         return (
             <div>
-                <h1>List Todos</h1>
+                <h1 className="heading">List Todos</h1>
                 {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
                 <div className="container">
                     <table className="table">
@@ -58,10 +58,15 @@ class ListTodosComponent extends Component {
                                     </button>
                                 </td>
 
-                                <td>
-                                    <button className="btn btn-outline-secondary"
-                                            onClick={() => this.completeTodo(todo.id, todo.todoName)}>Complete
-                                    </button>
+                                <td>{!todo.isCompleted &&
+                                <button className="btn btn-outline-dark"
+                                        onClick={() => this.completeTodo(todo.id, todo.todoName)}>Complete
+                                </button>}
+                                </td>
+                                <td>{todo.isCompleted &&
+                                <button className="btn btn-outline-secondary"
+                                        onClick={() => this.incompleteTodo(todo.id, todo.todoName)}>Progressing
+                                </button>}
                                 </td>
                                 <td>
                                     <button className="btn btn-danger"
@@ -98,6 +103,13 @@ class ListTodosComponent extends Component {
     completeTodo = (id, name) => {
         TodoService.completeTodo(id).then(r => {
             this.setState({message: `Todo was completed successfully, ${name}`})
+            this.getData()
+        })
+    }
+
+    incompleteTodo(id, name) {
+        TodoService.incompleteTodo(id).then(r => {
+            this.setState({message: `Todo is still progressing, ${name}`})
             this.getData()
         })
     }

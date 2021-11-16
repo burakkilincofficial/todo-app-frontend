@@ -34,9 +34,9 @@ class TodoApp extends Component {
                             <Route path="/" exact component={LoginComponent}/>
                             <Route path="/login" component={LoginComponent}/>
                             <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>
-                            <AuthenticatedRoute path="/todos" component={ListTodosComponent}/>
                             <AuthenticatedRoute exact path="/todo" component={TodoComponent}/>
                             <AuthenticatedRoute path="/todo/:id" component={TodoComponent}/>
+                            <AuthenticatedRoute path="/todos" component={ListTodosComponent}/>
                             <AuthenticatedRoute path="/logout" component={LogoutComponent}/>
                             <Route component={ErrorComponent}/>
                         </Switch>

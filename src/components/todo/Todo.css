@@ -2,3 +2,18 @@
     position: fixed;
     height: 25px;
 }
+
+
+.heading {
+    margin-bottom: 60px;
+    margin-top: 50px;
+}
+
+.container{
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.TodoApp{
+    height: 100vh;
+}

@@ -17,16 +17,16 @@ class WelcomeComponent extends Component {
 
     render() {
         return (
-            <>
-                <h1>Welcome!</h1>
+            <div className="deneme">
+                <h1 className="heading">Welcome!</h1>
                 <div className="container">
-                    Welcome {this.props.match.params.name}!
+                    Welcome <strong>{this.props.match.params.name}! </strong>
                     You can manage your todos <Link to="/todos">here</Link>
                 </div>
                 <div className="container">
-                    You can access the hello world message from button
-                    <button className="btn btn-success" onClick={this.getWelcomeMessage}>Get Welcome Message</button>
+                    You can access the hello world message
                 </div>
+                <button className="btn btn-success" onClick={this.getWelcomeMessage}>Get Welcome Message</button>
                 <div className="container">
                     {this.state.welcomeMessage}
                 </div>
@@ -36,7 +36,7 @@ class WelcomeComponent extends Component {
                 <div className="container">
                     {this.state.welcomePathVariableMessage}
                 </div>
-            </>
+            </div>
         );
     }
 

@@ -12,7 +12,8 @@ class TodoComponent extends Component {
             id: this.props.match.params.id,
             todoName: '',
             description: '',
-            targetDate: moment(new Date()).format('YYYY-MM-DD')
+            targetDate: moment(new Date()).format('YYYY-MM-DD'),
+            isCompleted: false
         }
     }
 
@@ -22,7 +23,8 @@ class TodoComponent extends Component {
                 this.setState({
                     todoName: r.data.todoName,
                     description: r.data.description,
-                    targetDate: moment(r.data.targetDate).format('YYYY-MM-DD')
+                    targetDate: moment(r.data.targetDate).format('YYYY-MM-DD'),
+                    isCompleted: r.data.isCompleted
                 })
             })
         }
@@ -35,11 +37,13 @@ class TodoComponent extends Component {
             description: values.description,
             targetDate: values.targetDate,
             userName: userName,
-            todoName: values.todoName
+            todoName: values.todoName,
+            isCompleted: values.isCompleted
         }
         if (this.state.id) {
-            TodoService.updateTodo(this.state.id, todo).then(
-                this.props.history.push(`/todos`)
+            TodoService.updateTodo(this.state.id, todo).then(() => {
+                    this.props.history.push(`/todos`)
+                }
             )
         } else {
             TodoService.createTodo(userName, todo).then(() => {
@@ -77,6 +81,7 @@ class TodoComponent extends Component {
         let description = this.state.description
         let targetDate = this.state.targetDate
         let todoName = this.state.todoName
+        let isCompleted = this.isCompleted
         return (
             <div>
                 <div className="container">
@@ -84,7 +89,8 @@ class TodoComponent extends Component {
                     <Formik initialValues={{
                         todoName,
                         description,
-                        targetDate
+                        targetDate,
+                        isCompleted
                     }}
                             onSubmit={this.onSubmit}
                             validateOnChange={false}
@@ -106,7 +112,7 @@ class TodoComponent extends Component {
                                         <label>Target Date</label>
                                         <Field className="form-control" type="date" name="targetDate"/>
                                         <label>IsCompleted</label>
-                                        <Field className="form-control" as="select" name="color">
+                                        <Field className="form-control" as="select" name="isCompleted">
                                             <option value="false">Not Completed</option>
                                             <option value="true">Completed</option>
                                         </Field>

@@ -18,12 +18,16 @@ class TodoService {
         return axios.post(`http://localhost:8080/v1/todos/${name}`, createTodoRequest)
     }
 
-    async updateTodo(id, updateTodoRequest) {
-        return await axios.put(`http://localhost:8080/v1/todos/${id}`, updateTodoRequest)
+    updateTodo = (id, updateTodoRequest) => {
+        return axios.put(`http://localhost:8080/v1/todos/${id}`, updateTodoRequest)
     }
 
     completeTodo = (id) => {
         return axios.post(`http://localhost:8080/v1/todos/complete/${id}`)
+    }
+
+    incompleteTodo = (id) => {
+        return axios.post(`http://localhost:8080/v1/todos/incomplete/${id}`)
     }
 
 }
