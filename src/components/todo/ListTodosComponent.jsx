@@ -17,7 +17,7 @@ class ListTodosComponent extends Component {
 
     }
 
-    getData() {
+    getData = () => {
         let userName = AuthenticationService.getUser()
         TodoService.getAllTodosByName(userName)
             .then(response => this.setState({
@@ -60,7 +60,7 @@ class ListTodosComponent extends Component {
 
                                 <td>
                                     <button className="btn btn-outline-secondary"
-                                            onClick={() => this.completeTodo(todo.id)}>Complete
+                                            onClick={() => this.completeTodo(todo.id, todo.todoName)}>Complete
                                     </button>
                                 </td>
                                 <td>
@@ -86,7 +86,7 @@ class ListTodosComponent extends Component {
     deleteTodoClicked = (id, name) => {
         console.log(id)
         TodoService.deleteTodo(id).then(r => {
-            this.setState({message: `Delete of todo ${name} Successful`})
+            this.setState({message: `Todo was deleted successfully, ${name}`})
             this.getData()
         })
     }
@@ -95,8 +95,9 @@ class ListTodosComponent extends Component {
         this.props.history.push(`/todo`)
     }
 
-    completeTodo = (id) => {
+    completeTodo = (id, name) => {
         TodoService.completeTodo(id).then(r => {
+            this.setState({message: `Todo was completed successfully, ${name}`})
             this.getData()
         })
     }

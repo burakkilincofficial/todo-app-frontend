@@ -68,6 +68,10 @@ class TodoComponent extends Component {
         return errors
     }
 
+    cancelProcess = () => {
+        return this.props.history.push(`/todos`)
+
+    }
 
     render() {
         let description = this.state.description
@@ -106,7 +110,13 @@ class TodoComponent extends Component {
                                             <option value="false">Not Completed</option>
                                             <option value="true">Completed</option>
                                         </Field>
+                                        <br/>
+                                        <br/>
                                         <button className="btn btn-success" type="submit">Save</button>
+                                        <span>{' '}</span>
+                                        <button className="btn btn-primary" onClick={() => this.cancelProcess()}
+                                                type="submit">Cancel
+                                        </button>
                                     </fieldset>
                                 </Form>
                             )
@@ -116,6 +126,8 @@ class TodoComponent extends Component {
             </div>
         )
     }
+
+
 }
 
 export default TodoComponent
