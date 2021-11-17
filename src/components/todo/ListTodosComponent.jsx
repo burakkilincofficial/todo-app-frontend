@@ -28,57 +28,60 @@ class ListTodosComponent extends Component {
     render() {
         return (
             <div>
-                <h1 className="heading">List Todos</h1>
-                {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
-                <div className="container">
-                    <table className="table">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Target Date</th>
-                            <th>Is Completed</th>
-                            <th>Completed Date</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.todos.map(todo =>
-                            <tr key={todo.id}>
-                                <td>{todo.todoName}</td>
-                                <td>{todo.description}</td>
-                                <td>{todo.targetDate}</td>
-                                <td>{todo.isCompleted.toString()}</td>
-                                <td>{todo.completedDate}</td>
-                                <td>
-                                    <button className="btn btn-warning"
-                                            onClick={() => this.updateTodoClicked(todo.id)}>Update
-                                    </button>
-                                </td>
-
-                                <td>{!todo.isCompleted &&
-                                <button className="btn btn-outline-dark"
-                                        onClick={() => this.completeTodo(todo.id, todo.todoName)}>Complete
-                                </button>}
-                                </td>
-                                <td>{todo.isCompleted &&
-                                <button className="btn btn-outline-secondary"
-                                        onClick={() => this.incompleteTodo(todo.id, todo.todoName)}>Progressing
-                                </button>}
-                                </td>
-                                <td>
-                                    <button className="btn btn-danger"
-                                            onClick={() => this.deleteTodoClicked(todo.id, todo.todoName)}>Delete
-                                    </button>
-                                </td>
+                <div className="test">
+                    <h1 className="heading">List Todos</h1>
+                    {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
+                    <div className="container">
+                        <table className="table">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Target Date</th>
+                                <th>Is Completed</th>
+                                <th>Completed Date</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                        )}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {this.state.todos.map(todo =>
+                                <tr key={todo.id}>
+                                    <td>{todo.todoName}</td>
+                                    <td>{todo.description}</td>
+                                    <td>{todo.targetDate}</td>
+                                    <td>{todo.isCompleted.toString()}</td>
+                                    <td>{todo.completedDate}</td>
+                                    <td>
+                                        <button className="btn btn-warning"
+                                                onClick={() => this.updateTodoClicked(todo.id)}>Update
+                                        </button>
+                                    </td>
+
+                                    <td>{!todo.isCompleted &&
+                                    <button className="btn btn-outline-dark"
+                                            onClick={() => this.completeTodo(todo.id, todo.todoName)}>Complete
+                                    </button>}
+                                    </td>
+                                    <td>{todo.isCompleted &&
+                                    <button className="btn btn-outline-secondary"
+                                            onClick={() => this.incompleteTodo(todo.id, todo.todoName)}>Progressing
+                                    </button>}
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-danger"
+                                                onClick={() => this.deleteTodoClicked(todo.id, todo.todoName)}>Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            )}
+                            </tbody>
+                        </table>
+                    </div>
+                    <button className="btn btn-success" onClick={() => this.addTodo()}>Add Todo</button>
                 </div>
-                <button className="btn btn-success" onClick={() => this.addTodo()}>Add Todo</button>
+
             </div>
         );
     }

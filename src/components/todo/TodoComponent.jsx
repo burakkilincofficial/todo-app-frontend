@@ -38,7 +38,7 @@ class TodoComponent extends Component {
             targetDate: values.targetDate,
             userName: userName,
             todoName: values.todoName,
-            isCompleted: values.isCompleted
+            isCompleted: values.isCompleted !== undefined
         }
         if (this.state.id) {
             TodoService.updateTodo(this.state.id, todo).then(() => {

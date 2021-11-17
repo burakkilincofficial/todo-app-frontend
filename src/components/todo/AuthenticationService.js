@@ -1,8 +1,9 @@
 import axios from "axios";
+import {API_URL} from "./constants/Constants";
 
 class AuthenticationService {
     executeBasicAuthenticationService(username, password) {
-        return axios.get(`http://localhost:8080/v1/basicauth`, {
+        return axios.get(`${API_URL}/v1/basicauth`, {
             headers: {authorization: this.createBasicAuthToken(username, password)}
         })
     }

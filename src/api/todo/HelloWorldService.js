@@ -1,17 +1,18 @@
 import axios from "axios";
+import {API_URL} from "../../components/todo/constants/Constants";
 
 class HelloWorldService {
 
     getHelloWorldMessage() {
-        return axios.get("http://localhost:8080/v1/hello-world")
+        return axios.get(`${API_URL}/v1/hello-world`)
     }
 
     getHelloWorldBeanMessage() {
-        return axios.get("http://localhost:8080/v1/hello-world-bean")
+        return axios.get(`${API_URL}/v1/hello-world-bean`)
     }
 
     getPathVariableMessage(name) {
-        return axios.get(`http://localhost:8080/v1/hello-world/path-variable/${name}`)
+        return axios.get(`${API_URL}/v1/hello-world/path-variable/${name}`)
     }
 }
 
