@@ -121,7 +121,7 @@ class TodoComponent extends Component {
                                         <button className="btn btn-success" type="submit">Save</button>
                                         <span>{' '}</span>
                                         <button className="btn btn-primary" onClick={() => this.cancelProcess()}
-                                                type="submit">Cancel
+                                                type="button">Cancel
                                         </button>
                                     </fieldset>
                                 </Form>

@@ -15,9 +15,9 @@ class LoginComponent extends Component {
     }
 
     loginClicked = () => {
-        AuthenticationService.executeBasicAuthenticationService(this.state.username, this.state.password)
-            .then(() => {
-                AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
+        AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
+            .then((response) => {
+                AuthenticationService.registerSuccessfulLoginWithJwt(this.state.username, response.data.token)
                 this.props.history.push(`/welcome/${this.state.username}`)
             })
             .catch(() => {
@@ -38,7 +38,7 @@ class LoginComponent extends Component {
     render() {
         return (
             <>
-                <h1 className="heading">Login Page</h1>
+                <h1 className="heading">Login to Todo Account</h1>
                 <div className="container">
                     {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
                     {this.state.showSuccessMessage && <div>Login Successful</div>}

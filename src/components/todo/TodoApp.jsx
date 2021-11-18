@@ -11,6 +11,8 @@ import FooterComponent from "./FooterComponent";
 import ErrorComponent from "./ErrorComponent";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import TodoComponent from "./TodoComponent";
+import RegisterComponent from "./RegisterComponent";
+import FirstComponent from "./FirstComponent";
 
 class TodoApp extends Component {
     constructor(props) {
@@ -26,12 +28,11 @@ class TodoApp extends Component {
 
     render() {
         return (
-            <div className="TodoApp">
                 <Router>
-                    <>
                         <HeaderComponent/>
                         <Switch>
-                            <Route path="/" exact component={LoginComponent}/>
+                            <Route path="/" exact component={FirstComponent}/>
+                            <Route path="/register" component={RegisterComponent}/>
                             <Route path="/login" component={LoginComponent}/>
                             <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>
                             <AuthenticatedRoute exact path="/todo" component={TodoComponent}/>
@@ -41,9 +42,8 @@ class TodoApp extends Component {
                             <Route component={ErrorComponent}/>
                         </Switch>
                         <FooterComponent/>
-                    </>
                 </Router>
-            </div>);
+            );
     }
 }
 

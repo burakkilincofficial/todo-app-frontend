@@ -17,7 +17,7 @@ class WelcomeComponent extends Component {
 
     render() {
         return (
-            <div className="deneme">
+            <div>
                 <h1 className="heading">Welcome!</h1>
                 <div className="container">
                     Welcome <strong>{this.props.match.params.name}! </strong>
@@ -47,6 +47,8 @@ class WelcomeComponent extends Component {
             .then(response => this.handleWelcomeBeanMessage(response))
         HelloWorldService.getPathVariableMessage(this.props.match.params.name)
             .then(response => this.handlePathVariableMessage(response))
+            .catch(error => this.handleError(error))
+
     }
 
     handleWelcomeMessage = (response) => {
@@ -65,6 +67,19 @@ class WelcomeComponent extends Component {
         this.setState({
             welcomePathVariableMessage: response.data.message
         })
+    }
+
+    handleError = (error) => {
+        let errorMessage = '';
+
+        if (error.message)
+            errorMessage += error.message
+
+        if (error.response && error.response.data) {
+            errorMessage += error.response.data.message
+        }
+
+        this.setState({welcomeMessage: errorMessage})
     }
 }
 
