@@ -1,9 +1,10 @@
 import axios from "axios";
 import {API_URL} from "./constants/Constants";
+import {Component} from "react";
 
 export const USER_NAME_SESSION_ATTR_NAME = 'authenticatedUser'
 
-class AuthenticationService {
+class AuthenticationService extends Component{
     executeBasicAuthenticationService(username, password) {
         return axios.get(`${API_URL}/v1/basicauth`, {
             headers: {authorization: this.createBasicAuthToken(username, password)}
@@ -27,12 +28,12 @@ class AuthenticationService {
 
     registerSuccessfulLogin(username, password) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTR_NAME, username);
-        this.setUpAxiosInterceptors(this.createBasicAuthToken(username, password))
+        this.setUpAxiosInterceptors(this.createBasicAuthToken(username, password), false)
     }
 
-    registerSuccessfulLoginWithJwt(username, token) {
+    registerSuccessfulLoginWithJwt(username, token, isRegister) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTR_NAME, username);
-        this.setUpAxiosInterceptors(this.createJwtAuthToken(token))
+        this.setUpAxiosInterceptors(this.createJwtAuthToken(token), isRegister)
     }
 
     registerSuccessfulLogout() {
@@ -51,10 +52,10 @@ class AuthenticationService {
         return user
     }
 
-    setUpAxiosInterceptors(token) {
+    setUpAxiosInterceptors(token, isRegister) {
         axios.interceptors.request.use(
             (config) => {
-                if (this.isLoggedIn()) {
+                if (this.isLoggedIn() || isRegister) {
                     config.headers.Authorization = token
                 }
                 return config
