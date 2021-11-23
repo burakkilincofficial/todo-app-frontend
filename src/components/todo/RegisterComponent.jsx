@@ -20,7 +20,8 @@ class RegisterComponent extends Component {
             birthDate: moment(new Date()).format('YYYY-MM-DD'),
             gender: 'Male',
             hasLoginFailed: false,
-            showSuccessMessage: false
+            showSuccessMessage: false,
+            errorMessage: ''
 
         }
     }
@@ -41,9 +42,13 @@ class RegisterComponent extends Component {
                 this.props.history.push(`/login`)
             }
         ).catch((error) => {
-            console.log(error)
-            this.setState({showSuccessMessage: false, hasLoginFailed: true})
-            this.props.history.push("/login")
+            if (error.response.status === 409) {
+                this.setState({
+                    errorMessage: `User Name with ${values.userName} already exists!`,
+                    showSuccessMessage: false,
+                    hasLoginFailed: true
+                })
+            }
         })
 
     }
@@ -125,7 +130,7 @@ class RegisterComponent extends Component {
             <div>
                 <div className="container">
                     <h1>Register Todo Account</h1>
-                    {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
+                    {this.state.hasLoginFailed && <div className="alert alert-warning">{this.state.errorMessage}</div>}
                     <Formik initialValues={{
                         userName,
                         password,
