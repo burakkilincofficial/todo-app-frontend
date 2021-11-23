@@ -4,7 +4,7 @@ import {Component} from "react";
 
 export const USER_NAME_SESSION_ATTR_NAME = 'authenticatedUser'
 
-class AuthenticationService extends Component{
+class AuthenticationService extends Component {
     executeBasicAuthenticationService(username, password) {
         return axios.get(`${API_URL}/v1/basicauth`, {
             headers: {authorization: this.createBasicAuthToken(username, password)}
@@ -32,7 +32,9 @@ class AuthenticationService extends Component{
     }
 
     registerSuccessfulLoginWithJwt(username, token, isRegister) {
-        sessionStorage.setItem(USER_NAME_SESSION_ATTR_NAME, username);
+        if (!isRegister) {
+            sessionStorage.setItem(USER_NAME_SESSION_ATTR_NAME, username);
+        }
         this.setUpAxiosInterceptors(this.createJwtAuthToken(token), isRegister)
     }
 

@@ -9,7 +9,6 @@ class UserService {
 
 
     createUser = (createTodoRequest) => {
-        console.log(createTodoRequest)
         return axios.post(`${API_URL}/users`, createTodoRequest)
     }
 }

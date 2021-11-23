@@ -3,8 +3,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import UserService from "../../api/todo/UserService";
 import moment from "moment";
 import AuthenticationService from "./AuthenticationService";
-
-const token = ""
+import {ENCRYPTED_HEADER_KEY} from "./constants/Constants";
 
 class RegisterComponent extends Component {
     constructor(props) {
@@ -20,10 +19,14 @@ class RegisterComponent extends Component {
             email: '',
             birthDate: moment(new Date()).format('YYYY-MM-DD'),
             gender: 'Male',
+            hasLoginFailed: false,
+            showSuccessMessage: false
+
         }
     }
 
     onSubmit = (values) => {
+        let token = window.atob(ENCRYPTED_HEADER_KEY);
         AuthenticationService.registerSuccessfulLoginWithJwt(values.userName, token, true)
         let todo = {
             userName: values.userName,
@@ -35,9 +38,13 @@ class RegisterComponent extends Component {
             birthDate: values.birthDate
         }
         UserService.createUser(todo).then(() => {
-                this.props.history.push(`/`)
+                this.props.history.push(`/login`)
             }
-        )
+        ).catch((error) => {
+            console.log(error)
+            this.setState({showSuccessMessage: false, hasLoginFailed: true})
+            this.props.history.push("/login")
+        })
 
     }
 
@@ -118,6 +125,7 @@ class RegisterComponent extends Component {
             <div>
                 <div className="container">
                     <h1>Register Todo Account</h1>
+                    {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
                     <Formik initialValues={{
                         userName,
                         password,

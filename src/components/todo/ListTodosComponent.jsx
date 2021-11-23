@@ -92,7 +92,6 @@ class ListTodosComponent extends Component {
 
 
     deleteTodoClicked = (id, name) => {
-        console.log(id)
         TodoService.deleteTodo(id).then(r => {
             this.setState({message: `Todo was deleted successfully, ${name}`})
             this.getData()
