@@ -24,6 +24,7 @@ class RegisterComponent extends Component {
     }
 
     onSubmit = (values) => {
+        AuthenticationService.registerSuccessfulLoginWithJwt(values.userName, token, true)
         let todo = {
             userName: values.userName,
             password: values.password,
