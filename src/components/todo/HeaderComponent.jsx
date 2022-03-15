@@ -10,7 +10,7 @@ class HeaderComponent extends Component {
         return (
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark" style={{padding: 7}}>
-                    <div><a className="navbar-brand" href="https://burak-kilinc-blog.vercel.app/"
+                    <div><a className="navbar-brand" href="https://burakilinc.com"
                     >{user}</a></div>
                     <ul className="navbar-nav">
                         {isUserLoggedIn && <li><Link className="nav-link" to={welcomeUrl}>Home</Link></li>}
