@@ -6,10 +6,10 @@ class HeaderComponent extends Component {
     render() {
         const isUserLoggedIn = AuthenticationService.isLoggedIn();
         let user = AuthenticationService.getUser();
-        let welcomeUrl = "/welcome/"+ user;
+        let welcomeUrl = "/welcome/" + user;
         return (
             <header>
-                <nav className="navbar navbar-expand-md navbar-dark bg-dark" style={{padding: 7}}>
+                <nav className="navbar navbar-expand-md navbar-dark bg-dark" style={{padding: 13}}>
                     <div><a className="navbar-brand" href="https://burakilinc.com"
                     >{user}</a></div>
                     <ul className="navbar-nav">

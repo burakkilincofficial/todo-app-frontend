@@ -1,10 +1,13 @@
 import {Component} from "react";
-import welcomePicture from './assets/welcome.jpg';
+import sspng from './assets/sspng.png';
 
 class FirstComponent extends Component {
     render() {
         return (
-                <img src={welcomePicture} alt="WelcomePage"/>
+            <div className="fill">
+                <img src={sspng} alt="WelcomePage"/>
+            </div>
+
 
         )
     }
